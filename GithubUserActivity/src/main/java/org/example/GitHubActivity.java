@@ -10,7 +10,7 @@ public class GitHubActivity {
     public static void main(String[] args) {
 
         if (args.length == 0) {
-            System.out.println("Usage: github-activity <username>");
+            System.out.println("Usage: java GitHubActivity <username>");
             return;
         }
 
@@ -55,11 +55,13 @@ public class GitHubActivity {
 
     static void parseEvents(String json) {
 
-        String[] events = json.split("\\{");
+        String[] events = json.split("\"type\":\"");
 
-        for (String event : events) {
+        for (int i = 1; i < events.length; i++) {
 
-            String type = extract(event, "\"type\":\"", "\"");
+            String event = events[i];
+
+            String type = extract(event, "", "\"");
             String repo = extract(event, "\"name\":\"", "\"");
 
             if (type.equals("PushEvent")) {
@@ -85,7 +87,7 @@ public class GitHubActivity {
 
             } else if (type.equals("CreateEvent")) {
 
-                System.out.println("- Created something in " + repo);
+                System.out.println("- Created repository " + repo);
 
             } else if (type.equals("PublicEvent")) {
 
@@ -99,13 +101,15 @@ public class GitHubActivity {
 
         try {
 
-            int i = text.indexOf(start);
+            int i = start.isEmpty() ? 0 : text.indexOf(start);
 
             if (i == -1) return "";
 
-            int j = text.indexOf(end, i + start.length());
+            int startIndex = start.isEmpty() ? 0 : i + start.length();
 
-            return text.substring(i + start.length(), j);
+            int j = text.indexOf(end, startIndex);
+
+            return text.substring(startIndex, j);
 
         } catch (Exception e) {
             return "";

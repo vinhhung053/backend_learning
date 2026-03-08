@@ -1,4 +1,4 @@
 Step1:
-    javac /home/vinhhung053/IdeaProjects/backend_learning/GithubUserActivity/src/main/java/org/example/GitHubActivity.java
+- javac /home/vinhhung053/IdeaProjects/backend_learning/GithubUserActivity/src/main/java/org/example/GitHubActivity.java
 Step2:
-    java
+- cd /home/vinhhung053/IdeaProjects/backend_learning/GithubUserActivity/src/main/java
