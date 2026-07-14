@@ -11,6 +11,9 @@
         <module name="SendEmailTemplate" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="my-football-project" target="26" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
